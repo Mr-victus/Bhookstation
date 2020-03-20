@@ -26,6 +26,7 @@ const images = {
   restaurant:require("../assets/restaurant.png"),
   bag:require("../assets/bag.png"),
   plate:require("../assets/plate.png"),
+  location:require("../assets/location.png"),
 };
 
 export default images;
