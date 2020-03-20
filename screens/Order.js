@@ -18,6 +18,7 @@ import { SafeAreaView } from "react-navigation";
 import DeviceInfo from 'react-native-device-info';
 import ApplicationStyles from "../common/ApplicationStyles";
 import { openLink } from '../common/OpenLink';
+import { normalizeFont as np } from "../common/NormalizeFont";
 const { Provider, Droppable, Draggable } = createDndContext();
 class Order extends Component {
   constructor(props) {
@@ -83,15 +84,28 @@ onDrop(payload){
       </View>
       </View>
       <View style={{alignItems:'center'}}>
-        <Text style={{color:'gray'}}>{this.state.msg}</Text>
+        <Text style={{color:'gray',fontSize:np(15)}}>{this.state.msg}</Text>
       </View>
-      <View style={{backgroundColor:'#ee0d0d',height:nh(120),borderTopLeftRadius:nw(30),borderTopRightRadius:nw(30),justifyContent:'space-evenly'}}>
+      <View style={{backgroundColor:'#ee0d0d',height:nh(120),borderTopLeftRadius:nw(15),borderTopRightRadius:nw(15),justifyContent:'space-evenly'}}>
         <View style={{alignItems:'center'}}>
-        <Text style={{color:'white',fontWeight:'bold'}}>Bag</Text>
+        <Text style={{color:'white',fontWeight:'bold',fontSize:np(15),textAlign:'center'}}>{this.state.msg}</Text>
         </View>
+        <View style={{flexDirection:'row',justifyContent: 'space-evenly',}}>
         {this.state.pickupScreen?<Droppables Droppable={Droppable} onDrop={(payload)=>{
         this.onDrop(payload)
       }} image={this.state.image||Images.bag}/>:<Draggables payload={"1"} Draggable={Draggable} image={Images.food} opacity={this.state.opacity==0?1:0}/>}
+      <View style={{backgroundColor:'white',height:nh(40),width:nw(150),borderRadius:nw(15),alignSelf:'center',justifyContent:'center',marginBottom:nh(10)}}>
+            <TouchableOpacity style={{flexDirection:'row',justifyContent:'space-evenly'}} onPress={()=>{
+                var scheme = Platform.OS === 'ios' ? 'maps:' : 'geo:';
+                //20.340252, 85.808416 trident academy
+                var url = scheme + `${this.props.lat||20.340252},${this.props.lon||85.808416}`;
+                openLink(url)
+            }}>
+              <Image style={{height:nh(20),width:nw(20),resizeMode:'contain'}} source={Images.location}/>
+            <Text style={{color:'black',alignSelf:'center',fontSize:np(15)}}>Drop Of Location</Text>
+            </TouchableOpacity>
+            </View>
+      </View>
       </View>
       </Provider>
       </SafeAreaView>
