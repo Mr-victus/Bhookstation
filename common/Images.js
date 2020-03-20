@@ -27,6 +27,7 @@ const images = {
   bag:require("../assets/bag.png"),
   plate:require("../assets/plate.png"),
   location:require("../assets/location.png"),
+  call:require("../assets/call.png"),
 };
 
 export default images;
