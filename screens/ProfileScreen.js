@@ -13,7 +13,7 @@ class SaveScreen extends Component {
   render() {
     return (
       <SafeAreaView style={{backgroundColor:'#ededed',flex:1}}>
-        <Text style={{fontSize:15}}> Profile </Text>
+        <Text style={{fontSize:15}}>TODO: Profile details , logout buttons and edit profile </Text>
       </SafeAreaView>
     );
   }
