@@ -77,8 +77,6 @@ onDrop(payload){
             <Text style={{color:'black',alignSelf:'center',fontSize:np(20),color:'#FF4141'}}>{this.state.phonenumber}</Text>
             </View>
             </TouchableOpacity>
-            
-            
             </View>
             <View style={{flexDirection:'row',marginTop:nh(25),zIndex:this.state.pickupScreen?1:0}}>
             {this.state.pickupScreen?<Draggables payload={"2"} Draggable={Draggable} image={Images.food} opacity={this.state.opacity}/>:<Droppables Droppable={Droppable} onDrop={(payload)=>{
@@ -90,31 +88,6 @@ onDrop(payload){
       </View>
             </View>
           </View>
-      {/* <View style={{backgroundColor:'#ee0d0d',height:nh(120),borderBottomLeftRadius:nw(30),borderBottomRightRadius:nw(30),zIndex:this.state.pickupScreen?1:0}}>
-      <View style={{flexDirection:'row',justifyContent:'space-between',marginHorizontal:nw(90),marginTop:nh(20)}}>
-        <View>
-        <View>
-        <Text style={{color:'white',fontWeight:'bold'}}>{this.state.pickupScreen?"Trident Canteen":"Jhon Doe"}</Text>
-      </View>
-      {this.state.pickupScreen?<Draggables payload={"2"} Draggable={Draggable} image={Images.food} opacity={this.state.opacity}/>:<Droppables Droppable={Droppable} onDrop={(payload)=>{
-        this.onDrop(payload)
-      }} image={this.state.image}/>}
-        </View>
-        <View style={{marginLeft:nw(30)}}>
-          <Text style={{color:'white',fontWeight:'bold'}}>Food</Text>
-          <Text style={{color:'white',fontWeight:'bold'}}>Delivery Time: {this.state.deliveryTime}</Text>
-          <TouchableOpacity onPress={()=>{
-                var scheme = Platform.OS === 'ios' ? 'maps:' : 'geo:';
-                //20.340252, 85.808416 trident academy
-                var url = scheme + `${this.props.lat||20.340252},${this.props.lon||85.808416}`;
-                openLink(url)
-            }}>
-            <Text style={{color:'white'}}>Drop Of Location</Text>
-            </TouchableOpacity>
-            {this.state.pickupScreen?null:<Text style={{color:'white'}}>987654321</Text>}
-        </View>
-      </View>
-      </View> */}
       <View style={{backgroundColor:'#FF4141',height:nh(120),borderTopLeftRadius:nw(15),borderTopRightRadius:nw(15),justifyContent:'space-evenly'}}>
         <View style={{alignItems:'center'}}>
         <Text style={{color:'white',fontWeight:'bold',fontSize:np(15),textAlign:'center'}}>{this.state.msg}</Text>
