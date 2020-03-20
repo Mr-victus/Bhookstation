@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text ,TouchableOpacity,SafeAreaView,Image} from 'react-native';
+import { View, Text ,TouchableOpacity,SafeAreaView,Image,ScrollView} from 'react-native';
 import { TextInput } from 'react-native-paper';
 import Images from '../common/Images';
 import { normalizeHeight as nh } from '../common/NormalizeHeight';
@@ -17,6 +17,7 @@ class Login extends Component {
   });
   render() {
     return (
+        <ScrollView style={{flex:1,backgroundColor:'white'}}>
         <SafeAreaView style={{flex:1,backgroundColor:'white'}}>
         <View style={{flex:1,justifyContent:'center',backgroundColor:'white',marginVertical:100}}>
             <View style={{alignContent:'space-between'}} >
@@ -57,6 +58,7 @@ class Login extends Component {
          
         </View>
         </SafeAreaView>
+        </ScrollView>
     );
   }
 }

@@ -43,7 +43,7 @@ class OrderIndivisual extends Component {
         <View>
        
         <TouchableOpacity onPress={()=>{
-
+          this.props.onPickUp()
         }}>
         <View style={{justifyContent:'center',color:'white',marginHorizontal:nw(30),backgroundColor:'#ee0d0d',height:nh(35),width:nw(90),borderRadius:nw(20),alignContent:'center',alignItems:'center'}}>
           <Text style={{color:'white'}}>Pick up</Text>

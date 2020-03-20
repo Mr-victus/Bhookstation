@@ -30,38 +30,39 @@ class Droppables extends Component {
   render() {
     return (
         
-        <this.props.Droppable
-        onEnter={() => {
-          console.log('Draggable entered');
-        }}
-        onLeave={() => {
-          console.log('Draggable left');
-        }}
-        onDrop={({ payload }) => {
-          console.log('Draggable with the following payload was dropped', payload);
-          this.props.onDrop(payload)
-        }}
-      >
-        {({ active, viewProps }) => {
-          return (
-            <View style={{flexDirection:'row',alignItems:'center'}}>
-            <View style={ApplicationStyles.droppables.treeLines}></View>
-            <Animated.View
-            
-              {...viewProps}
-              style={[
-                viewProps.style,
-              ]}
-            >
-               <View style={ApplicationStyles.droppables.view}>
-              <Text style={ApplicationStyles.droppables.text}>{this.props.text}</Text>
-              </View>
-            </Animated.View>
-            <View style={ApplicationStyles.droppables.treeLines}></View>
-            </View>
-          );
-        }}
-      </this.props.Droppable>
+      <this.props.Droppable
+      onEnter={() => {
+        console.log('Draggable entered');
+      }}
+      onLeave={() => {
+        console.log('Draggable left');
+      }}
+      onDrop={({ payload }) => {
+        console.log('Draggable with the following payload was dropped', payload);
+        this.props.onDrop(payload)
+        // this.setState({
+        //   image:Images.food,
+        //   opacity:1,
+        //   pickupScreen:false,
+        //   msg:"Food Delivered"
+        // })
+      }}
+    >
+      {({ active, viewProps }) => {
+        return (
+          <Animated.View
+            {...viewProps}
+            style={[
+              viewProps.style,
+            ]}
+          >
+              <View style={{alignItems:'center'}}>
+      <Image source={this.props.image} style={{height:nh(50),width:nw(50)}}/>
+      </View>
+          </Animated.View>
+        );
+      }}
+    </this.props.Droppable>
      
     );
   }

@@ -26,12 +26,33 @@ class Order extends Component {
       image:undefined,
       opacity:1,
       pickupScreen:true,
-      msg:"Drag the Food Item to the bag when you pick up the parcel"
+      msg:"Drag the Food Item to the bag when you pick up the parcel",
+      deliveryTime:'12:20 PM'
     };
   }
   static navigationOptions =(props)=>({
     header:null
 });
+onDrop(payload){
+  if(payload==="1")
+  {
+    this.setState({
+      image:Images.food,
+      opacity:1,
+      pickupScreen:false,
+      msg:"Food Delivered"
+    })
+  }
+  else{
+    this.setState({
+      image:Images.plate,
+      opacity:0,
+      pickupScreen:false,
+      msg:"Drag the Food Item to the Plate when you Deliver the parcel",
+      deliveryTime:'12:20 PM'
+    })
+  }
+}
   render() {
     return (
       <SafeAreaView style={{flex:1,backgroundColor:'#ededed',justifyContent:'space-between'}}>
@@ -42,65 +63,13 @@ class Order extends Component {
         <View>
         <Text style={{color:'white',fontWeight:'bold'}}>{this.state.pickupScreen?"Trident Canteen":"Jhon Doe"}</Text>
       </View>
-      {this.state.pickupScreen?<Draggable
-      onDragStart={() => {
-        console.log('Started draggging');
-      }}
-      onDragEnd={() => {
-        console.log('Ended draggging');
-      }}
-      payload={this.props.payload}
-    >
-      {({ viewProps }) => {
-        return (
-          <Animated.View
-            {...viewProps}
-            pointerEvents={this.state.opacity==1?"auto":"none"}
-             style={[viewProps.style, {zindex: 1,opacity: this.state.opacity}]}
-          >
-            <View>
-            <Image source={Images.food} style={{height:nh(50),width:nw(50)}}/>
-            </View>
-          </Animated.View>
-        );
-      }}
-    </Draggable>:<Droppable
-        onEnter={() => {
-          console.log('Draggable entered');
-        }}
-        onLeave={() => {
-          console.log('Draggable left');
-        }}
-        onDrop={({ payload }) => {
-          console.log('Draggable with the following payload was dropped', payload);
-          // this.props.onDrop(payload)
-          this.setState({
-            image:Images.food,
-            opacity:1,
-            pickupScreen:false,
-            msg:"Food Delivered"
-          })
-        }}
-      >
-        {({ active, viewProps }) => {
-          return (
-            <Animated.View
-              {...viewProps}
-              style={[
-                viewProps.style,
-              ]}
-            >
-                <View style={{alignItems:'center'}}>
-        <Image source={this.state.image} style={{height:nh(50),width:nw(50)}}/>
-        </View>
-            </Animated.View>
-          );
-        }}
-      </Droppable>}
+      {this.state.pickupScreen?<Draggables payload={"2"} Draggable={Draggable} image={Images.food} opacity={this.state.opacity}/>:<Droppables Droppable={Droppable} onDrop={(payload)=>{
+        this.onDrop(payload)
+      }} image={this.state.image}/>}
         </View>
         <View style={{marginLeft:nw(30)}}>
           <Text style={{color:'white',fontWeight:'bold'}}>Food</Text>
-          <Text style={{color:'white',fontWeight:'bold'}}>Delivery Time: 12:20 PM</Text>
+          <Text style={{color:'white',fontWeight:'bold'}}>Delivery Time: {this.state.deliveryTime}</Text>
           <TouchableOpacity onPress={()=>{
                 var scheme = Platform.OS === 'ios' ? 'maps:' : 'geo:';
                 //20.340252, 85.808416 trident academy
@@ -120,61 +89,9 @@ class Order extends Component {
         <View style={{alignItems:'center'}}>
         <Text style={{color:'white',fontWeight:'bold'}}>Bag</Text>
         </View>
-        {this.state.pickupScreen?<Droppable
-        onEnter={() => {
-          console.log('Draggable entered');
-        }}
-        onLeave={() => {
-          console.log('Draggable left');
-        }}
-        onDrop={({ payload }) => {
-          console.log('Draggable with the following payload was dropped', payload);
-          // this.props.onDrop(payload)
-          this.setState({
-            image:Images.plate,
-            opacity:0,
-            pickupScreen:false,
-            msg:"Drag the Food Item to the Plate when you Deliver the parcel"
-          })
-        }}
-      >
-        {({ active, viewProps }) => {
-          return (
-            <Animated.View
-              {...viewProps}
-              style={[
-                viewProps.style,
-              ]}
-            >
-                <View style={{alignItems:'center',justifyContent:'center'}}>
-        <Image source={this.state.image||Images.bag} style={{height:nh(50),width:nw(50)}}/>
-        </View>
-            </Animated.View>
-          );
-        }}
-      </Droppable>:<Draggable
-      onDragStart={() => {
-        console.log('Started draggging');
-      }}
-      onDragEnd={() => {
-        console.log('Ended draggging');
-      }}
-      payload={this.props.payload}
-    >
-      {({ viewProps }) => {
-        return (
-          <Animated.View
-            {...viewProps}
-            pointerEvents={this.state.opacity==0?"auto":"none"}
-             style={[viewProps.style, {zindex: 1,opacity: this.state.opacity==0?1:0,}]}
-          >
-            <View style={{alignItems:'center',justifyContent:'center'}}>
-            <Image source={Images.food} style={{height:nh(50),width:nw(50)}}/>
-            </View>
-          </Animated.View>
-        );
-      }}
-    </Draggable>}
+        {this.state.pickupScreen?<Droppables Droppable={Droppable} onDrop={(payload)=>{
+        this.onDrop(payload)
+      }} image={this.state.image||Images.bag}/>:<Draggables payload={"1"} Draggable={Draggable} image={Images.food} opacity={this.state.opacity==0?1:0}/>}
       </View>
       </Provider>
       </SafeAreaView>

@@ -50,14 +50,14 @@ const MainBottomNavigator = createBottomTabNavigator(
           if (routeName.includes("Deliveries")) {
             iconName = focused ? Images.deliveries_select : Images.deliveries_unselect;
           } else if (routeName.includes("Order")) {
-            iconName = focused ? Images.order_select : Images.order_unselect;
+            iconName = focused ? Images.order_select : Images.order_select;
           } else if (routeName.includes("ProfileScreen")) {
             iconName = focused ? Images.profile_select : Images.profile_unselect;
           }
           return (
             <Image
               source={iconName}
-              style={{marginTop:nh(40),marginBottom:nh(30),width:nw(24),height:nh(24),resizeMode:'contain'}}
+              style={{marginTop:nh(40),marginBottom:nh(30),width:nw(24),height:nh(24),resizeMode:'contain',opacity:focused?1:0.5}}
               color={tintColor}
             />
           );

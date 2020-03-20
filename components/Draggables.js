@@ -27,8 +27,6 @@ class Draggables extends Component {
     return (
       
       <this.props.Draggable
-      // key={this.props.key}
-      
       onDragStart={() => {
         console.log('Started draggging');
       }}
@@ -42,11 +40,11 @@ class Draggables extends Component {
           <Animated.View
             {...viewProps}
             pointerEvents={this.props.opacity==1?"auto":"none"}
-            style={[viewProps.style, {opacity: this.props.opacity,}]}
+             style={[viewProps.style, {zindex: 1,opacity: this.props.opacity}]}
           >
-            <View style={ ApplicationStyles.draggables.view }>
-        <Text style={ ApplicationStyles.draggables.text }>{this.props.text}</Text>
-        </View>   
+            <View style={{alignItems:'center',justifyContent:'center'}}>
+            <Image source={this.props.image} style={{height:nh(50),width:nw(50)}}/>
+            </View>
           </Animated.View>
         );
       }}
