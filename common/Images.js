@@ -24,6 +24,8 @@ const images = {
   profile_unselect:require("../assets/profile_unselect.png"),
   food:require("../assets/food.png"),
   restaurant:require("../assets/restaurant.png"),
+  bag:require("../assets/bag.png"),
+  plate:require("../assets/plate.png"),
 };
 
 export default images;
