@@ -43,7 +43,7 @@ class Draggables extends Component {
              style={[viewProps.style, {zindex: 1,opacity: this.props.opacity}]}
           >
             <View style={{alignItems:'center',justifyContent:'center'}}>
-            <Image source={this.props.image} style={{height:nh(50),width:nw(50)}}/>
+            <Image source={this.props.image} style={{height:nh(50),width:nw(50),resizeMode:'contain'}}/>
             </View>
           </Animated.View>
         );

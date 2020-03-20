@@ -57,7 +57,7 @@ class Droppables extends Component {
             ]}
           >
               <View style={{alignItems:'center'}}>
-      <Image source={this.props.image} style={{height:nh(50),width:nw(50)}}/>
+      <Image source={this.props.image} style={{height:nh(50),width:nw(50),resizeMode:'contain'}}/>
       </View>
           </Animated.View>
         );
